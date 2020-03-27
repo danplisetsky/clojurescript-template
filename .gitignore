@@ -1,3 +1,16 @@
 node_modules
 *#
 *.#*
+
+# shadow-cljs files
+
+.shadow-cljs/
+.cpcache/
+
+# build artifacts
+
+!public/
+
+public/*
+!public/index.html
+!public/css
