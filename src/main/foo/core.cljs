@@ -1,6 +1,48 @@
 (ns foo.core)
 
-(js/alert "Hello, World")
+;; STATE
 
-(println "Hello, World")
+(defonce state (atom 0))
 
+;; HELPERS
+
+(defn root []
+  (.getElementById js/document "app"))
+
+(defn counter []
+  (.getElementById js/document "counter"))
+
+(defn replaceChild [root new-child old-child]
+  (.replaceChild root new-child old-child))
+
+;; COMPONENTS
+
+(defn new-counter []
+  (doto (.createElement js/document "p")
+    (.setAttribute "id" "counter")
+    (aset "innerHTML" @state)))
+
+(defn new-button-inc []
+  (doto (.createElement js/document "button")
+    (aset "innerHTML" "plus one")
+    (aset "onclick" (fn [_event]
+                      (swap! state inc)
+                      (replaceChild (root) (new-counter) (counter))))))
+
+(defn new-button-reset []
+  (doto (.createElement js/document "button")
+    (aset "innerHTML" "reset")
+    (aset "onclick" (fn [_event]
+                      (reset! state 0)
+                      (replaceChild (root) (new-counter) (counter))))))
+
+;; RENDER
+
+(defn render [root & components]
+  (doseq [c components]
+    (.append root c)))
+
+(defn ^:export init
+  []
+  (aset (root) "innerHTML" "")
+  (render (root) (new-counter) (new-button-inc) (new-button-reset)))
