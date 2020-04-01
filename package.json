@@ -5,7 +5,8 @@
     "app:compile": "shadow-cljs compile app",
     "app:release": "shadow-cljs release app",
     "app:watch": "shadow-cljs watch app",
-    "app:repl": "shadow-cljs cljs-repl app"
+    "app:repl": "shadow-cljs cljs-repl app",
+    "start": "npm run server"
   },
   "devDependencies": {
     "shadow-cljs": "^2.8.94"
