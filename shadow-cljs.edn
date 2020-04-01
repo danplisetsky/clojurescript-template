@@ -1,7 +1,12 @@
 {:deps
  {:aliases [:cljs]}
 
- :dev-http {9000 "public"}
+ :nrepl
+ {:port 9001
+  :init-ns utils}
+
+ :dev-http
+ {9000 "public"}
 
  :builds
  {:app {:target :browser
