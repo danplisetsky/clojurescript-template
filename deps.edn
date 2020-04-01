@@ -4,5 +4,6 @@
 
  :aliases
  {:cljs
-  {:extra-deps {reagent {:mvn/version "0.10.0"}}
+  {:extra-deps {reagent {:mvn/version "0.10.0"}
+                binaryage/devtools {:mvn/version "1.0.0"}}
    :extra-paths ["src/main" "src/test"]}}}
